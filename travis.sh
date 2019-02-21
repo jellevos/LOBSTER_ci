@@ -304,6 +304,10 @@ test ${WARNINGS_OK:=true} == true -o "$WARNINGS_OK" == 1 -o "$WARNINGS_OK" == ye
 #travis_run --title "CXX compiler info" $CXX --version
 
 update_system
+
+# LOBSTER-specific scripts
+source ${MOVEIT_CI_DIR}/check_lobster_specifics.sh
+
 prepare_or_run_early_tests
 run_xvfb
 prepare_catkin_workspace
@@ -325,9 +329,6 @@ for t in $(unify_list " ,;" "$TEST") ; do
          ;;
    esac
 done
-
-# LOBSTER-specific scripts
-source ${MOVEIT_CI_DIR}/check_lobster_specifics.sh
 
 # Run warnings check
 (source ${MOVEIT_CI_DIR}/check_warnings.sh)
