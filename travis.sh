@@ -301,7 +301,7 @@ fi
 test ${WARNINGS_OK:=true} == true -o "$WARNINGS_OK" == 1 -o "$WARNINGS_OK" == yes && WARNINGS_OK=1 || WARNINGS_OK=0
 
 # Define CC/CXX defaults and print compiler version info
-travis_run --title "CXX compiler info" $CXX --version
+#travis_run --title "CXX compiler info" $CXX --version
 
 update_system
 prepare_or_run_early_tests
@@ -325,6 +325,11 @@ for t in $(unify_list " ,;" "$TEST") ; do
          ;;
    esac
 done
+
+# LOBSTER-specific scripts
+pylint src
+nosetests
+
 # Run warnings check
 (source ${MOVEIT_CI_DIR}/check_warnings.sh)
 test $? -eq 0 || result=$(( ${result:-0} + 1 ))
