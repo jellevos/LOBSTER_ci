@@ -327,8 +327,12 @@ for t in $(unify_list " ,;" "$TEST") ; do
 done
 
 # LOBSTER-specific scripts
-pylint src
-nosetests
+travis_run --title "Running pylint in src:" \
+   pylint src
+travis_run --title "Running pylint in robots:" \
+   pylint robots
+travis_run --title "Running nosetests:" \
+   nosetests
 
 # Run warnings check
 (source ${MOVEIT_CI_DIR}/check_warnings.sh)
