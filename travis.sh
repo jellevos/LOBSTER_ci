@@ -67,7 +67,7 @@ function run_docker() {
         -v $HOME/.ccache:/root/.ccache \
         -t \
         -w /root/$REPOSITORY_NAME \
-        $DOCKER_IMAGE /root/$REPOSITORY_NAME/.moveit_ci/travis.sh
+        $DOCKER_IMAGE /root/$REPOSITORY_NAME/.lobster_ci/travis.sh
     result=$?
 
     echo
